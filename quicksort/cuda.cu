@@ -114,7 +114,6 @@ void writeToFile(long int *arr, long n, FILE *fw)
     for(long int i=0; i<n ;i++)
     {
 	    fprintf(fw,"%ld\n",arr[i]);
-        i++;
     }
 }
 
@@ -161,7 +160,7 @@ int main(int argc, char *argv[])
     cudaMemcpy(input, arr_device, size, cudaMemcpyDeviceToHost);    /* Copy D tp H */
 
     FILE *fw;
-    fw = fopen(argv[2], "a");
+    fw = fopen(argv[2], "w");
     writeToFile(input, n, fw);
 
     return 0;

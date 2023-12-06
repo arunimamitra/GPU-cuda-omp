@@ -47,7 +47,6 @@ void writeToFile(long int *arr, long int n, FILE *fw)
     for(long int i=0; i<n ;i++)
     {
 	    fprintf(fw,"%ld\n",arr[i]);
-        i++;
     }
 }
 
@@ -57,7 +56,7 @@ int main(int argc, char *argv[])
     {
         printf("usage: Executable name\n");
         printf("name = The name of the input file\n");
-	    printf("name = The name of the output file\n");
+	      printf("name = The name of the output file\n");
         exit(1);
     }
 
@@ -82,7 +81,7 @@ int main(int argc, char *argv[])
 
     quicksort(input, 0, n-1);
     FILE *fw;
-    fw = fopen(argv[2], "a");
+    fw = fopen(argv[2], "w");
     writeToFile(input, n, fw);
     return 0;
 }

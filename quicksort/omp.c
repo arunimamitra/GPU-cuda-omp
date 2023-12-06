@@ -69,7 +69,6 @@ void writeToFile(long int *arr, long n, FILE *fw)
     for(long int i=0; i<n ;i++)
     {
 	    fprintf(fw,"%ld\n",arr[i]);
-        i++;
     }
 }
 
@@ -104,7 +103,7 @@ int main(int argc, char *argv[])
 
     quicksort(input,n);
     FILE *fw;
-    fw = fopen(argv[2], "a");
+    fw = fopen(argv[2], "w");
     writeToFile(input, n, fw);
     return 0;
 }

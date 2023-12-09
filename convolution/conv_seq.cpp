@@ -15,15 +15,10 @@ int N;
 int *filter;
 int *output;
 
-int readInputFile(string filename)
+
+//initialize a unit matrix
+void initialize_matrix()
 {
-    ifstream inputFile(filename.c_str());
-    if (!inputFile.is_open()) 
-    {
-        fprintf(stderr,"Unable to open the file....Exiting!");
-        exit(1);
-    }
-    inputFile >> N;         
     matrix = (int *) malloc(N * N * sizeof(int));
     if(!matrix)
     {
@@ -32,9 +27,7 @@ int readInputFile(string filename)
     }
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
-            inputFile >> matrix[index(i, j, N)];
-    inputFile.close();
-    return 0;
+            matrix[index(i, j, N)]=1;
 }
 void initialize_filter()
 {
@@ -93,14 +86,14 @@ int main(int argc,char**argv)
 {
     if (argc < 3) 
     {
-        fprintf(stderr, "usage: conv_seq input_file output_file \n");
-        fprintf(stderr, "input_file= path to input_file with graph\n");
+        fprintf(stderr, "usage: conv_seq N output_file \n");
+        fprintf(stderr, "N=  size of input matrix\n");
         fprintf(stderr, "output_file=filename to store convoluted matrix\n");
         exit(1);
     }
-    string input_filename=argv[1];
+    N=stoi(argv[1]);
     string output_filename=argv[2];
-    readInputFile(input_filename);
+    initialize_matrix();
     initialize_filter();
     output=(int *)malloc((N-2)*(N-2)*sizeof(int));
     if(!output)

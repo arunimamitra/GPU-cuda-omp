@@ -16,7 +16,18 @@ int *matrix;
 int N;
 int *filter;
 int *output;
-
+void initialize_matrix()
+{
+    matrix = (int *) malloc(N * N * sizeof(int));
+    if(!matrix)
+    {
+        fprintf(stderr,"Unable to allocate matrix of size %d x %d\n",N,N);
+        exit(1);
+    }
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+            matrix[index(i, j, N)]=1;
+}
 int readInputFile(string filename)
 {
     ifstream inputFile(filename.c_str());
@@ -100,15 +111,15 @@ int main(int argc,char**argv)
     if (argc < 3)
     {
         fprintf(stderr, "usage: conv_seq input_file output_file \n");
-        fprintf(stderr, "input_file= path to input_file with graph\n");
+        fprintf(stderr, "N= size of input square matrix\n");
         fprintf(stderr, "output_file=filename to store convoluted matrix\n");
         exit(1);
     }
-    string input_filename=argv[1];
+    N=stoi(argv[1]);
     string output_filename=argv[2];
     double time_taken;
     clock_t start, end;
-    readInputFile(input_filename);
+    initialize_matrix();
     initialize_filter();
     output=(int *)malloc((N-2)*(N-2)*sizeof(int));
     if(!output)

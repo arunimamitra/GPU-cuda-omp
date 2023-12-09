@@ -96,8 +96,6 @@ int main(int argc,char**argv)
     }
     N=stoi(argv[1]);
     string output_filename=argv[2];
-    double time_taken;
-    clock_t start, end;
     initialize_matrix();
     initialize_filter();
     output=(int *)malloc((N-2)*(N-2)*sizeof(int));
@@ -133,17 +131,12 @@ int main(int argc,char**argv)
 
     dim3 grid_size(8, 1, 1);
     dim3 block_size(32, 32, 1);
-
-    start=clock();      //start clock
     int w=N-2;
     cudaMemcpy(matrix_d,matrix,N*N*sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(output_d,output,w*w*sizeof(int), cudaMemcpyHostToDevice);
     cudaMemcpy(filter_d,filter,3*3*sizeof(int),cudaMemcpyHostToDevice);
     convolution_kernel<<<grid_size,block_size>>>(N,matrix_d,output_d,filter_d);
     cudaMemcpy(output,output_d, w*w*sizeof(int), cudaMemcpyDeviceToHost);
-    end=clock();            // end clock
-    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
-    printf("Time taken = %lf\n", time_taken);
     printResults(output_filename);
     free(matrix);
     free(filter);

@@ -104,13 +104,7 @@ int main(int argc,char**argv)
         fprintf(stderr,"Unable to allocate output matrix of size %d x %d\n",N-2,N-2);
         exit(1);
     }
-    double time_taken;
-    clock_t start, end;
-    start=clock();
     convolution();
-    end=clock();
-    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
-    printf("Time taken = %lf\n", time_taken);
     printResults(output_filename);
     free(matrix);
     free(filter);

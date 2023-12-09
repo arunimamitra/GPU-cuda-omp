@@ -28,27 +28,6 @@ void initialize_matrix()
         for (int j = 0; j < N; j++)
             matrix[index(i, j, N)]=1;
 }
-int readInputFile(string filename)
-{
-    ifstream inputFile(filename.c_str());
-    if (!inputFile.is_open()) 
-    {
-        fprintf(stderr,"Unable to open the file....Exiting!");
-        exit(1);
-    }
-    inputFile >> N;         
-    matrix = (int *) malloc(N * N * sizeof(int));
-    if(!matrix)
-    {
-        fprintf(stderr,"Unable to allocate matrix of size %d x %d\n",N,N);
-        exit(1);
-    }
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
-            inputFile >> matrix[index(i, j, N)];
-    inputFile.close();
-    return 0;
-}
 void initialize_filter()
 {
     filter=(int *)malloc(3*3*sizeof(int));

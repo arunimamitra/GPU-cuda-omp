@@ -165,8 +165,6 @@ int main(int argc, char **argv)
         K=3;
     else
         K=stoi(argv[3]);
-    double time_taken;
-    clock_t start, end;
     if(readInputFile(input_filename))
         exit(1);
     generate_initial_centroids();
@@ -227,8 +225,6 @@ int main(int argc, char **argv)
     dim3 grid_size(8, 1, 1);
     dim3 block_size(512, 1, 1);
     int stride = ceil(N / (float)(grid_size.x * block_size.x));     // each thread will take care of 'stride' coordinates.. If stride=2, each thread computes for two coordinates
-    
-    start=clock();      //start clock
     cudaMemcpy(points_d, points, N*2*sizeof(float), cudaMemcpyHostToDevice);
     cudaMemcpy(centroids_d, centroids, K *2*sizeof(float), cudaMemcpyHostToDevice);
     cudaMemcpy(clusters_d, clusters, N* sizeof(int), cudaMemcpyHostToDevice);
@@ -249,15 +245,11 @@ calculate_new_centroids_kernel<<<grid_size,block_size>>>(N,K,stride,points_d,cen
     cudaFree(centroids_d);
     cudaFree(clusters_d);
     cudaFree(cluster_size_d);
-    cudaFree(change_flag_d);
-    end=clock();                //end clock
-    
+    cudaFree(change_flag_d);    
     printResults(output_filename);
     free(points);
     free(centroids);
     free(cluster_size);
     free(clusters);
-    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
-    printf("Time taken = %lf\n", time_taken);
     return 0;
 }

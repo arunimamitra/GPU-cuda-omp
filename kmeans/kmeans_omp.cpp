@@ -161,8 +161,6 @@ int main(int argc, char **argv)
         K=3;
     else
         K=stoi(argv[3]);
-    double time_taken;
-    clock_t start, end;
     if(readInputFile(input_filename))
         exit(1);
     generate_initial_centroids();
@@ -182,20 +180,16 @@ int main(int argc, char **argv)
     }
     bool change_flag=true;
     iterations=0;
-    start=clock();                  //start clock time
     while(change_flag)
     {
         change_flag=assign_points_to_clusters();
         calculate_new_centroids();
         iterations++;
     }
-    end=clock();
     printResults(output_filename);
     free(points);
     free(centroids);
     free(cluster_size);
     free(clusters);
-    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
-    printf("Time taken = %lf\n", time_taken);
     return 0;
 }

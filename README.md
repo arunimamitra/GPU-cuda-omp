@@ -28,3 +28,35 @@ Time taken = 0.000000
 
 [am13018@access1 v2]$ ./sequential 1000000000 out.txt
 Time taken = 24.630000
+
+
+
+**************
+
+
+[am13018@cuda3 v2]$  ./sequential 1000000000 out2.txt
+Time taken = 46.610000
+
+[am13018@cuda3 v2]$  ./sequential 500000000 out2.txt
+Time taken = 21.960000
+
+[am13018@cuda3 v2]$  ./sequential 100000000 out2.txt
+Time taken = 3.640000
+
+[am13018@cuda3 v2]$  ./sequential 50000000 out2.txt
+Time taken = 1.520000
+
+[am13018@cuda3 v2]$  ./sequential 10000000 out2.txt
+Time taken = 0.170000
+
+[am13018@cuda3 v2]$  ./sequential 5000000 out2.txt
+Time taken = 0.100000
+
+[am13018@cuda3 v2]$  ./sequential 1000000 out2.txt
+Time taken = 0.020000
+
+[am13018@cuda3 v2]$  ./sequential 100000 out2.txt
+Time taken = 0.000000
+
+[am13018@cuda3 v2]$  ./sequential 500000 out2.txt
+Time taken = 0.010000

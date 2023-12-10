@@ -49,7 +49,7 @@ void initialize_filter()
 
 void convolution()
 {
-    #pragma omp target teams num_teams(512) map(to: matrix[0:N*N], filter[0:3*3], N) map(from: output[0:(N-2)*(N-2)])
+    #pragma omp target teams map(to: matrix[0:N*N], filter[0:3*3], N) map(from: output[0:(N-2)*(N-2)])
     #pragma omp distribute parallel for collapse(2)
     for (int i = 0; i < N - 2; i++)
     {

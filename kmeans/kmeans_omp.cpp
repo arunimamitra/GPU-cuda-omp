@@ -122,17 +122,12 @@ void calculate_new_centroids()
         centroids[index(i,0,2)]=0.0;
         centroids[index(i,1,2)]=0.0;
     }
-    #pragma omp target teams num_teams(512) map(to: points[0:N*2],clusters[0:N]) map(tofrom: centroids[0:K*2])
     {
-        #pragma omp distribute parallel for
         for(long int i=0;i<N;i++)
         {
             int cluster_current_point=clusters[i];
-            #pragma omp atomic write
             centroids[index(cluster_current_point,0,2)]= centroids[index(cluster_current_point,0,2)]+points[index(i,0,2)];
-            #pragma omp atomic write
             centroids[index(cluster_current_point,1,2)]=centroids[index(cluster_current_point,1,2)]+points[index(i,1,2)];
-
         }
     }
     for(int i=0;i<K;i++)

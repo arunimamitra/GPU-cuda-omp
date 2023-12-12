@@ -63,7 +63,7 @@ void bellman_ford()
     dist[0]=0; // set source vertex
     for(int i=0;i<N-1;i++)
     {
-        bool distance_change=false; // to exit in lesser iterations
+        bool distance_change=false; 
         for(int u=0;u<N;u++)
         {
             for(int v=0;v<N;v++)
@@ -79,8 +79,6 @@ void bellman_ford()
                 }
             }
         }
-        if(!distance_change)
-            return;
     }
     //check for negative cycles by doing another iteration
     for(int u=0;u<N;u++)
@@ -90,7 +88,7 @@ void bellman_ford()
             int edge_weight=mat[index(u,v,N)];
             if(edge_weight<INF)
             {
-                if(dist[v]<dist[u]+edge_weight)
+                if(dist[v]>dist[u]+edge_weight)
                 {
                     negative_cycle=true;
                     return;

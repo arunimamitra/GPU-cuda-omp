@@ -9,11 +9,11 @@
 #include <cstdio>
 #include <cstdlib>
 
-#define N_MAX 12
+#define N_MAX 11
 
 __global__ void kernelIsValid(int board_length, long long int total_board_size, long long int offset, int *d_solutions, int *d_num_solutions) {
     long long int column = (long long int)(threadIdx.x + blockIdx.x * blockDim.x) + offset;
-    if (column>= total_board_size) return;      /* race condition */
+    if (column>= total_board_size) return;      /* base condition */
     
     bool isValid;
     int board[N_MAX];
@@ -48,7 +48,6 @@ int countPossibleSolutions(int board_length)
 
     int id_offsets = 1; //initialise as 1 so that the kernel is executed at least once
 
-    /* use these two lines with the 2D kernel implementation */
     int grid = 256;
     int block = 64;
     if (total_board_size > grid * block)
@@ -66,13 +65,12 @@ int countPossibleSolutions(int board_length)
 
 int main(int argc, char** argv)
 {
-    if (argc !=2) {
-        printf("usage: Executable name\n");
-        printf("board length = The parameter N\n");
-        exit(1);
-    }
+    if(argc != 2){
+		std::cout<<"Command Line: ./program n"<<std::endl;
+		std::cout<<"n is the size of the board"<<std::endl;
+		exit(1);
+	}
     int board_length=atoi(argv[1]);
 	int solutionsPossible = countPossibleSolutions(board_length);
-    printf("Board length = %d, Number of unique solutions to place all the queens = %d", board_length, solutionsPossible);
+    printf("Board length = %d, Number of unique solutions to place all the queens = %d\n", board_length, solutionsPossible);
 }
-

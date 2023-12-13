@@ -9,7 +9,7 @@
 #define BLOCK_SIZE 128
 
 void writeToFile(bool* compositeNumbers, long int N, FILE* fw){
-    for(long int i = 2; i <= N; i++){
+    for(long int i = 2; i < N; i++){
         if(!compositeNumbers[i])
             fprintf(fw,"%ld \n",i);
     }

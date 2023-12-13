@@ -5,7 +5,7 @@
 
 bool isValid(int* board, int j)
 {
-    for (int row = 0; row < j; ++row)
+    for (int row = 0; row < j; row++)
     {
         if (board[row] == board[j])    /* we cannot place queen in the same row twice */
             return false;
@@ -19,12 +19,12 @@ bool isValid(int* board, int j)
 
 int countPossibleSolutions(int board_length) {
 
-    long long int total_board_size = powl(board_length, board_length);
+    long long int total_board_configurations_possible = powl(board_length, board_length);
     int solutionsPossible = 0;
 
-     for (long long int i = 0; i < total_board_size; i++) {
+     for (long long int i = 0; i < total_board_configurations_possible; i++) {
         bool valid = true;
-        int board[11];
+        int board[12];
         long long int column = i;   /* columns are always kept unique */
 
         for (int j = 0; j < board_length; j++) {
@@ -44,12 +44,18 @@ int countPossibleSolutions(int board_length) {
 
 int main(int argc, char** argv)
 {
-    if (argc != 2) {
-        printf("usage: Executable name\n");
-        printf("board length = The parameter N\n");
-        exit(1);
-    }
+    if(argc != 2){
+		std::cout<<"Command Line: ./program n"<<std::endl;
+		std::cout<<"n is the size of the board"<<std::endl;
+		exit(1);
+	}
     int board_length=atoi(argv[1]);
-	int solutionsPossible = countPossibleSolutions(board_length);
-    printf("Board length = %d, Number of unique solutions to place all the queens = %d", board_length, solutionsPossible);
+    double time_taken;
+    clock_t start, end;
+    start=clock();
+    int solutionsPossible = countPossibleSolutions(board_length);
+    end=clock();
+    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
+    printf("Board length = %d, Number of unique solutions to place all the queens = %d\n", board_length, solutionsPossible);
+    printf("Time taken = %lf\n", time_taken);
 }

@@ -2,11 +2,11 @@
 #include <omp.h>
 #include <math.h>
 
-
 void writeToFile(bool* compositeNumbers, int N, FILE* fw){
-    for(int i = 2; i <= N; i++){
-        if(!compositeNumbers[i])
-            fprintf(fw,"%ld \t",i);
+    for(int i = 2; i < N; i++){
+        if(!compositeNumbers[i]){
+            fprintf(fw,"%ld \n",i);
+        }
     }
 }
 
@@ -21,7 +21,6 @@ int main(int argc, char** argv)
     }
     long int N = atoi(argv[1]);
     bool *compositeNumbers = (bool *)calloc(N+1, sizeof(bool));
-
     #pragma omp target data map (tofrom: compositeNumbers[0:N]) 
     for (int i=2;i<=sqrt(N); i++){
       if (!compositeNumbers[i]){    /* Number is a prime number - assign multiples of the number true */

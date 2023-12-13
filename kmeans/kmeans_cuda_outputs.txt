@@ -1,0 +1,118 @@
+[ag8733@cuda3 km]$ nvprof ./kmeans_cuda inputs/1k.txt outputs/1k_cuda 10
+==21551== NVPROF is profiling process 21551, command: ./kmeans_cuda inputs/1k.txt outputs/1k_cuda 10
+==21551== Profiling application: ./kmeans_cuda inputs/1k.txt outputs/1k_cuda 10
+==21551== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   55.13%  160.10us        27  5.9290us  5.8550us  7.0080us  calculate_new_centroids_kernel(long, int, int, float*, float*, int*, int*)
+                   29.52%  85.727us        27  3.1750us  3.1040us  3.8080us  assign_points_to_cluster_kernel(long, int, int, float*, float*, int*, int*, bool*)
+                   12.96%  37.632us        29  1.2970us  1.2480us  1.5360us  [CUDA memcpy DtoH]
+                    1.66%  4.8320us         3  1.6100us  1.1520us  2.0800us  [CUDA memcpy HtoD]
+                    0.73%  2.1120us         1  2.1120us  2.1120us  2.1120us  [CUDA memcpy DtoD]
+      API calls:   99.08%  321.84ms         5  64.367ms  2.9270us  321.82ms  cudaMalloc
+                    0.28%  923.81us         2  461.90us  456.96us  466.85us  cuDeviceTotalMem
+                    0.20%  635.67us       194  3.2760us     228ns  137.46us  cuDeviceGetAttribute
+                    0.14%  465.15us        33  14.095us  5.2070us  51.129us  cudaMemcpy
+                    0.12%  404.23us        54  7.4850us  1.7300us  9.5120us  cudaDeviceSynchronize
+                    0.10%  315.18us        54  5.8360us  4.6650us  24.216us  cudaLaunchKernel
+                    0.04%  140.77us         5  28.154us  3.0230us  119.51us  cudaFree
+                    0.02%  72.491us         2  36.245us  28.865us  43.626us  cuDeviceGetName
+                    0.01%  36.663us         2  18.331us  2.8720us  33.791us  cuDeviceGetPCIBusId
+                    0.00%  4.0000us         4  1.0000us     230ns  3.2620us  cuDeviceGet
+                    0.00%  1.9200us         3     640ns     382ns  1.1370us  cuDeviceGetCount
+                    0.00%     805ns         2     402ns     313ns     492ns  cuDeviceGetUuid
+
+
+[ag8733@cuda3 km]$ nvprof ./kmeans_cuda inputs/10k.txt outputs/10k_cuda 10
+==21581== NVPROF is profiling process 21581, command: ./kmeans_cuda inputs/10k.txt outputs/10k_cuda 10
+==21581== Profiling application: ./kmeans_cuda inputs/10k.txt outputs/10k_cuda 10
+==21581== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   68.42%  1.0559ms        59  17.897us  17.696us  21.056us  calculate_new_centroids_kernel(long, int, int, float*, float*, int*, int*)
+                   25.21%  389.02us        59  6.5930us  6.4640us  8.6720us  assign_points_to_cluster_kernel(long, int, int, float*, float*, int*, int*, bool*)
+                    5.17%  79.771us        61  1.3070us  1.2470us  3.6160us  [CUDA memcpy DtoH]
+                    1.08%  16.672us         3  5.5570us  1.1200us  9.5680us  [CUDA memcpy HtoD]
+                    0.13%  1.9840us         1  1.9840us  1.9840us  1.9840us  [CUDA memcpy DtoD]
+      API calls:   98.57%  382.67ms         5  76.534ms  4.0490us  382.65ms  cudaMalloc
+                    0.48%  1.8777ms       118  15.912us  6.5310us  24.490us  cudaDeviceSynchronize
+                    0.26%  1.0097ms        65  15.533us  12.466us  67.856us  cudaMemcpy
+                    0.24%  923.27us         2  461.63us  456.10us  467.17us  cuDeviceTotalMem
+                    0.22%  836.83us       118  7.0910us  5.9990us  30.695us  cudaLaunchKernel
+                    0.17%  643.20us       194  3.3150us     226ns  145.75us  cuDeviceGetAttribute
+                    0.04%  165.93us         5  33.185us  4.2050us  137.13us  cudaFree
+                    0.02%  68.154us         2  34.077us  28.750us  39.404us  cuDeviceGetName
+                    0.01%  26.442us         2  13.221us  2.9560us  23.486us  cuDeviceGetPCIBusId
+                    0.00%  3.9880us         4     997ns     215ns  3.2460us  cuDeviceGet
+                    0.00%  1.7500us         3     583ns     306ns  1.0680us  cuDeviceGetCount
+                    0.00%     893ns         2     446ns     330ns     563ns  cuDeviceGetUuid
+
+
+[ag8733@cuda3 km]$ nvprof ./kmeans_cuda inputs/100k.txt outputs/100k_cuda 10
+==21611== NVPROF is profiling process 21611, command: ./kmeans_cuda inputs/100k.txt outputs/100k_cuda 10
+==21611== Profiling application: ./kmeans_cuda inputs/100k.txt outputs/100k_cuda 10
+==21611== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   72.07%  9.8456ms        70  140.65us  138.08us  172.35us  calculate_new_centroids_kernel(long, int, int, float*, float*, int*, int*)
+                   26.26%  3.5877ms        70  51.253us  48.160us  64.960us  assign_points_to_cluster_kernel(long, int, int, float*, float*, int*, int*, bool*)
+                    0.89%  121.89us        72  1.6920us  1.2480us  31.040us  [CUDA memcpy DtoH]
+                    0.76%  104.00us         3  34.666us  1.1520us  67.744us  [CUDA memcpy HtoD]
+                    0.01%  2.0160us         1  2.0160us  2.0160us  2.0160us  [CUDA memcpy DtoD]
+      API calls:   94.63%  354.64ms         5  70.927ms  8.1400us  354.59ms  cudaMalloc
+                    3.71%  13.904ms       140  99.316us  45.499us  174.85us  cudaDeviceSynchronize
+                    0.66%  2.4661ms        76  32.448us  18.072us  468.28us  cudaMemcpy
+                    0.47%  1.7703ms       140  12.645us  9.9440us  58.860us  cudaLaunchKernel
+                    0.25%  927.39us         2  463.70us  459.56us  467.83us  cuDeviceTotalMem
+                    0.18%  669.76us       194  3.4520us     230ns  146.18us  cuDeviceGetAttribute
+                    0.07%  270.65us         5  54.130us  7.4600us  217.89us  cudaFree
+                    0.02%  68.303us         2  34.151us  28.945us  39.358us  cuDeviceGetName
+                    0.01%  26.496us         2  13.248us  3.7680us  22.728us  cuDeviceGetPCIBusId
+                    0.00%  4.0570us         4  1.0140us     214ns  3.3040us  cuDeviceGet
+                    0.00%  2.9280us         3     976ns     363ns  1.8770us  cuDeviceGetCount
+                    0.00%     740ns         2     370ns     294ns     446ns  cuDeviceGetUuid
+
+
+[ag8733@cuda3 km]$ nvprof ./kmeans_cuda inputs/1000k.txt outputs/1000k_cuda 10
+==21640== NVPROF is profiling process 21640, command: ./kmeans_cuda inputs/1000k.txt outputs/1000k_cuda 10
+==21640== Profiling application: ./kmeans_cuda inputs/1000k.txt outputs/1000k_cuda 10
+==21640== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   71.72%  106.21ms        79  1.3445ms  1.3315ms  1.6471ms  calculate_new_centroids_kernel(long, int, int, float*, float*, int*, int*)
+                   25.68%  38.032ms        79  481.41us  472.41us  544.60us  assign_points_to_cluster_kernel(long, int, int, float*, float*, int*, int*, bool*)
+                    1.62%  2.4020ms         3  800.67us  1.1520us  1.6563ms  [CUDA memcpy HtoD]
+                    0.97%  1.4427ms        81  17.811us  1.4070us  1.3255ms  [CUDA memcpy DtoH]
+                    0.00%  2.0160us         1  2.0160us  2.0160us  2.0160us  [CUDA memcpy DtoD]
+      API calls:   71.77%  399.42ms         5  79.885ms  5.0490us  399.15ms  cudaMalloc
+                   26.01%  144.78ms       158  916.32us  476.34us  1.6502ms  cudaDeviceSynchronize
+                    1.13%  6.2855ms        85  73.946us  11.437us  2.2864ms  cudaMemcpy
+                    0.67%  3.7326ms       194  19.240us     228ns  3.2218ms  cuDeviceGetAttribute
+                    0.18%  980.83us       158  6.2070us  4.3060us  33.621us  cudaLaunchKernel
+                    0.17%  942.25us         2  471.12us  465.62us  476.62us  cuDeviceTotalMem
+                    0.05%  302.40us         5  60.479us  4.0890us  145.24us  cudaFree
+                    0.01%  67.969us         2  33.984us  29.380us  38.589us  cuDeviceGetName
+                    0.00%  23.193us         2  11.596us  3.7750us  19.418us  cuDeviceGetPCIBusId
+                    0.00%  4.0860us         4  1.0210us     216ns  3.2730us  cuDeviceGet
+                    0.00%  1.8000us         3     600ns     303ns  1.1130us  cuDeviceGetCount
+                    0.00%     793ns         2     396ns     340ns     453ns  cuDeviceGetUuid
+
+
+[ag8733@cuda3 km]$ nvprof ./kmeans_cuda inputs/2000k.txt outputs/2000k_cuda 10
+==23329== NVPROF is profiling process 23329, command: ./kmeans_cuda inputs/2000k.txt outputs/2000k_cuda 10
+==23329== Profiling application: ./kmeans_cuda inputs/2000k.txt outputs/2000k_cuda 10
+==23329== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   71.48%  431.27ms       162  2.6621ms  2.6279ms  3.8085ms  calculate_new_centroids_kernel(long, int, int, float*, float*, int*, int*)
+                   27.35%  165.01ms       162  1.0186ms  973.18us  1.7420ms  assign_points_to_cluster_kernel(long, int, int, float*, float*, int*, int*, bool*)
+                    0.86%  5.2048ms         3  1.7349ms  1.1520us  3.5518ms  [CUDA memcpy HtoD]
+                    0.30%  1.8214ms       164  11.106us  1.3760us  1.5869ms  [CUDA memcpy DtoH]
+                    0.00%  2.0160us         1  2.0160us  2.0160us  2.0160us  [CUDA memcpy DtoD]
+      API calls:   62.57%  597.39ms       324  1.8438ms  976.07us  3.8126ms  cudaDeviceSynchronize
+                   35.96%  343.30ms         5  68.661ms  9.6170us  342.81ms  cudaMalloc
+                    1.04%  9.8889ms       168  58.862us  11.288us  3.8362ms  cudaMemcpy
+                    0.23%  2.1793ms       324  6.7260us  4.7360us  53.909us  cudaLaunchKernel
+                    0.10%  919.50us         2  459.75us  434.97us  484.54us  cuDeviceTotalMem
+                    0.06%  613.28us       194  3.1610us     216ns  134.36us  cuDeviceGetAttribute
+                    0.04%  364.10us         5  72.820us  4.4380us  200.47us  cudaFree
+                    0.01%  63.507us         2  31.753us  27.250us  36.257us  cuDeviceGetName
+                    0.00%  24.622us         2  12.311us  2.6900us  21.932us  cuDeviceGetPCIBusId
+                    0.00%  4.0190us         4  1.0040us     207ns  3.2940us  cuDeviceGet
+                    0.00%  1.8760us         3     625ns     336ns  1.1910us  cuDeviceGetCount
+                    0.00%     746ns         2     373ns     338ns     408ns  cuDeviceGetUuid

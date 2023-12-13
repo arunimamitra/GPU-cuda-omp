@@ -122,17 +122,12 @@ void calculate_new_centroids()
         centroids[index(i,0,2)]=0.0;
         centroids[index(i,1,2)]=0.0;
     }
-    #pragma omp target teams num_teams(512) map(to: points[0:N*2],clusters[0:N]) map(tofrom: centroids[0:K*2])
     {
-        #pragma omp distribute parallel for
         for(long int i=0;i<N;i++)
         {
             int cluster_current_point=clusters[i];
-            #pragma omp atomic write
             centroids[index(cluster_current_point,0,2)]= centroids[index(cluster_current_point,0,2)]+points[index(i,0,2)];
-            #pragma omp atomic write
             centroids[index(cluster_current_point,1,2)]=centroids[index(cluster_current_point,1,2)]+points[index(i,1,2)];
-
         }
     }
     for(int i=0;i<K;i++)
@@ -161,8 +156,6 @@ int main(int argc, char **argv)
         K=3;
     else
         K=stoi(argv[3]);
-    double time_taken;
-    clock_t start, end;
     if(readInputFile(input_filename))
         exit(1);
     generate_initial_centroids();
@@ -182,20 +175,16 @@ int main(int argc, char **argv)
     }
     bool change_flag=true;
     iterations=0;
-    start=clock();                  //start clock time
     while(change_flag)
     {
         change_flag=assign_points_to_clusters();
         calculate_new_centroids();
         iterations++;
     }
-    end=clock();
     printResults(output_filename);
     free(points);
     free(centroids);
     free(cluster_size);
     free(clusters);
-    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
-    printf("Time taken = %lf\n", time_taken);
     return 0;
 }

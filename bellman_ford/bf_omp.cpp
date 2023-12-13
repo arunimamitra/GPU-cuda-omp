@@ -55,7 +55,7 @@ int printDistance(string filename)
     return 0;
 }
 
-void bellman_ford() 
+void bellman_ford()
 {
     negative_cycle = false;
     for (int u = 0; u < N; u++) {
@@ -108,11 +108,6 @@ int main(int argc, char *argv[])
 
     string input_filename=argv[1];
     string output_filemame=argv[2];
-
-    // to measure time taken by a specific part of the code
-    double time_taken;
-    clock_t start, end;
-
     if(readInputFile(input_filename))
         exit(1);
     dist=(int *)malloc(N* sizeof(int));
@@ -121,12 +116,8 @@ int main(int argc, char *argv[])
         fprintf(stderr,"Unable to allocate distance matrix of size %d\n",N);
         exit(1);
     }
-    start=clock();
     bellman_ford();
-    end=clock();
     if(printDistance(output_filemame))
         exit(1);
-    time_taken = ((double)(end - start))/ CLOCKS_PER_SEC;
-    printf("Time taken = %lf\n", time_taken);
     return 0;
 }

@@ -1,0 +1,178 @@
+[ag8733@cuda3 km]$ nvprof ./kmeans_omp inputs/1k.txt outputs/1k_omp 10
+==99930== NVPROF is profiling process 99930, command: ./kmeans_omp inputs/1k.txt outputs/1k_omp 10
+==99930== Profiling application: ./kmeans_omp inputs/1k.txt outputs/1k_omp 10
+==99930== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.92%  219.58ms        27  8.1327ms  8.0402ms  8.2457ms  _Z25assign_points_to_clustersv$_omp_fn$0
+                    0.05%  115.68us        81  1.4280us  1.2470us  2.2080us  [CUDA memcpy DtoH]
+                    0.03%  69.726us        27  2.5820us  2.5600us  2.9110us  [CUDA memcpy HtoD]
+      API calls:   35.33%  274.67ms         1  274.67ms  274.67ms  274.67ms  cuCtxCreate
+                   28.26%  219.66ms        27  8.1356ms  8.0439ms  8.2511ms  cuCtxSynchronize
+                   13.73%  106.71ms        25  4.2683ms  3.3723ms  9.5049ms  cuLinkAddData
+                    8.93%  69.401ms        54  1.2852ms  615.86us  5.2519ms  cuMemAlloc
+                    7.18%  55.848ms         1  55.848ms  55.848ms  55.848ms  cuCtxDestroy
+                    3.91%  30.388ms        54  562.74us  185.45us  4.0279ms  cuMemFree
+                    1.24%  9.6143ms         1  9.6143ms  9.6143ms  9.6143ms  cuModuleLoadData
+                    0.74%  5.7276ms        27  212.13us  9.9380us  5.2867ms  cuLaunchKernel
+                    0.38%  2.9393ms         1  2.9393ms  2.9393ms  2.9393ms  cuLinkComplete
+                    0.18%  1.3726ms        81  16.945us  10.338us  45.972us  cuMemcpyDtoH
+                    0.07%  542.95us        27  20.109us  10.262us  73.443us  cuMemcpyHtoD
+                    0.03%  196.12us        19  10.321us     224ns  188.64us  cuDeviceGetAttribute
+                    0.01%  80.498us       135     596ns     243ns  6.3830us  cuMemGetAddressRange
+                    0.01%  76.417us         1  76.417us  76.417us  76.417us  cuLinkCreate
+                    0.01%  68.914us       165     417ns     143ns  6.5590us  cuCtxGetDevice
+                    0.01%  52.070us         2  26.035us  2.6760us  49.394us  cuDeviceGetPCIBusId
+                    0.00%  32.661us         1  32.661us  32.661us  32.661us  cuDeviceGetName
+                    0.00%  6.5140us         1  6.5140us  6.5140us  6.5140us  cuModuleGetFunction
+                    0.00%  6.3840us         2  3.1920us  1.0530us  5.3310us  cuFuncGetAttribute
+                    0.00%  3.9740us         1  3.9740us  3.9740us  3.9740us  cuLinkDestroy
+                    0.00%  3.9410us         3  1.3130us     228ns  3.4590us  cuDeviceGet
+                    0.00%  3.5390us         1  3.5390us  3.5390us  3.5390us  cuCtxGetCurrent
+                    0.00%  2.8290us         1  2.8290us  2.8290us  2.8290us  cuInit
+                    0.00%  1.7080us         2     854ns     617ns  1.0910us  cuModuleGetGlobal
+                    0.00%  1.5850us         4     396ns     200ns     856ns  cuDeviceGetCount
+                    0.00%     208ns         1     208ns     208ns     208ns  cuDriverGetVersion
+
+
+[ag8733@cuda3 km]$ nvprof ./kmeans_omp inputs/10k.txt outputs/10k_omp 10
+==99958== NVPROF is profiling process 99958, command: ./kmeans_omp inputs/10k.txt outputs/10k_omp 10
+==99958== Profiling application: ./kmeans_omp inputs/10k.txt outputs/10k_omp 10
+==99958== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.98%  6.30312s        59  106.83ms  103.35ms  111.62ms  _Z25assign_points_to_clustersv$_omp_fn$0
+                    0.02%  1.1146ms       295  3.7780us  1.0870us  9.9840us  [CUDA memcpy HtoD]
+                    0.01%  453.28us       177  2.5600us  1.2470us  4.6400us  [CUDA memcpy DtoH]
+      API calls:   89.63%  6.30342s        59  106.84ms  103.36ms  111.62ms  cuCtxSynchronize
+                    4.00%  281.26ms         1  281.26ms  281.26ms  281.26ms  cuCtxCreate
+                    1.85%  130.19ms       118  1.1033ms  602.87us  4.2520ms  cuMemAlloc
+                    1.32%  93.145ms        25  3.7258ms  3.2219ms  9.1874ms  cuLinkAddData
+                    1.21%  85.325ms         1  85.325ms  85.325ms  85.325ms  cuCtxDestroy
+                    0.92%  64.913ms       295  220.04us  3.7280us  1.0678ms  cuMemcpyHtoD
+                    0.73%  51.536ms       118  436.75us  131.67us  4.8681ms  cuMemFree
+                    0.14%  9.6733ms         1  9.6733ms  9.6733ms  9.6733ms  cuModuleLoadData
+                    0.08%  5.9586ms        59  100.99us  9.3050us  5.1544ms  cuLaunchKernel
+                    0.05%  3.4503ms       177  19.493us  10.581us  188.33us  cuMemcpyDtoH
+                    0.04%  2.8864ms         1  2.8864ms  2.8864ms  2.8864ms  cuLinkComplete
+                    0.00%  256.56us       531     483ns     224ns  28.551us  cuMemGetAddressRange
+                    0.00%  188.93us        19  9.9430us     226ns  181.45us  cuDeviceGetAttribute
+                    0.00%  170.01us       593     286ns     126ns  11.953us  cuCtxGetDevice
+                    0.00%  71.706us         1  71.706us  71.706us  71.706us  cuLinkCreate
+                    0.00%  30.463us         1  30.463us  30.463us  30.463us  cuDeviceGetName
+                    0.00%  21.929us         2  10.964us  2.0990us  19.830us  cuDeviceGetPCIBusId
+                    0.00%  6.8880us         2  3.4440us  1.0620us  5.8260us  cuFuncGetAttribute
+                    0.00%  6.7430us         1  6.7430us  6.7430us  6.7430us  cuModuleGetFunction
+                    0.00%  4.0120us         1  4.0120us  4.0120us  4.0120us  cuLinkDestroy
+                    0.00%  3.9790us         3  1.3260us     253ns  3.4700us  cuDeviceGet
+                    0.00%  3.3200us         1  3.3200us  3.3200us  3.3200us  cuCtxGetCurrent
+                    0.00%  3.2040us         1  3.2040us  3.2040us  3.2040us  cuInit
+                    0.00%  2.4030us         4     600ns     211ns  1.6670us  cuDeviceGetCount
+                    0.00%  1.9510us         2     975ns     696ns  1.2550us  cuModuleGetGlobal
+                    0.00%     230ns         1     230ns     230ns     230ns  cuDriverGetVersion
+
+
+[ag8733@cuda3 km]$ nvprof ./kmeans_omp inputs/100k.txt outputs/100k_omp 10
+==99999== NVPROF is profiling process 99999, command: ./kmeans_omp inputs/100k.txt outputs/100k_omp 10
+==99999== Profiling application: ./kmeans_omp inputs/100k.txt outputs/100k_omp 10
+==99999== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.99%  76.1728s        70  1.08818s  1.06560s  1.12205s  _Z25assign_points_to_clustersv$_omp_fn$0
+                    0.01%  7.4649ms       350  21.328us  1.1190us  68.256us  [CUDA memcpy HtoD]
+                    0.00%  2.4621ms       210  11.724us  1.3120us  32.128us  [CUDA memcpy DtoH]
+      API calls:   98.88%  76.1733s        70  1.08819s  1.06560s  1.12206s  cuCtxSynchronize
+                    0.32%  243.92ms         1  243.92ms  243.92ms  243.92ms  cuCtxCreate
+                    0.21%  162.92ms       140  1.1637ms  610.08us  3.1689ms  cuMemAlloc
+                    0.20%  155.61ms       350  444.59us  4.2500us  1.0665ms  cuMemcpyHtoD
+                    0.14%  105.95ms         1  105.95ms  105.95ms  105.95ms  cuCtxDestroy
+                    0.12%  92.702ms        25  3.7081ms  3.1595ms  9.5028ms  cuLinkAddData
+                    0.10%  74.253ms       140  530.38us  287.78us  5.0137ms  cuMemFree
+                    0.02%  11.669ms       210  55.565us  10.805us  730.99us  cuMemcpyDtoH
+                    0.01%  9.6542ms         1  9.6542ms  9.6542ms  9.6542ms  cuModuleLoadData
+                    0.01%  5.7133ms        70  81.618us  11.164us  4.5727ms  cuLaunchKernel
+                    0.00%  2.9057ms         1  2.9057ms  2.9057ms  2.9057ms  cuLinkComplete
+                    0.00%  423.95us       630     672ns     204ns  27.379us  cuMemGetAddressRange
+                    0.00%  250.63us       703     356ns     121ns  13.897us  cuCtxGetDevice
+                    0.00%  181.06us        19  9.5290us     220ns  173.23us  cuDeviceGetAttribute
+                    0.00%  67.531us         1  67.531us  67.531us  67.531us  cuLinkCreate
+                    0.00%  29.210us         1  29.210us  29.210us  29.210us  cuDeviceGetName
+                    0.00%  17.649us         2  8.8240us  2.3660us  15.283us  cuDeviceGetPCIBusId
+                    0.00%  7.0510us         1  7.0510us  7.0510us  7.0510us  cuModuleGetFunction
+                    0.00%  6.6900us         2  3.3450us  1.1540us  5.5360us  cuFuncGetAttribute
+                    0.00%  4.0610us         3  1.3530us     213ns  3.5720us  cuDeviceGet
+                    0.00%  3.9590us         1  3.9590us  3.9590us  3.9590us  cuLinkDestroy
+                    0.00%  3.3910us         1  3.3910us  3.3910us  3.3910us  cuCtxGetCurrent
+                    0.00%  2.8720us         4     718ns     205ns  1.7640us  cuDeviceGetCount
+                    0.00%  2.5920us         1  2.5920us  2.5920us  2.5920us  cuInit
+                    0.00%  1.8620us         2     931ns     636ns  1.2260us  cuModuleGetGlobal
+                    0.00%     233ns         1     233ns     233ns     233ns  cuDriverGetVersion
+
+
+ nvprof ./kmeans_omp inputs/1000k.txt outputs/1000k_omp 10
+==103244== NVPROF is profiling process 103244, command: ./kmeans_omp inputs/1000k.txt outputs/1000k_omp 10
+==103244== Profiling application: ./kmeans_omp inputs/1000k.txt outputs/1000k_omp 10
+==103244== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.95%  417.049s        38  10.9750s  10.3890s  13.4252s  _Z25assign_points_to_clustersv$_omp_fn$0
+                    0.05%  200.93ms       190  1.0575ms  1.0870us  5.3679ms  [CUDA memcpy HtoD]
+                    0.01%  24.273ms       114  212.92us  1.5350us  685.37us  [CUDA memcpy DtoH]
+      API calls:   99.78%  417.049s        38  10.9750s  10.3890s  13.4253s  cuCtxSynchronize
+                    0.07%  279.96ms       190  1.4735ms  4.3410us  6.6392ms  cuMemcpyHtoD
+                    0.06%  262.55ms         1  262.55ms  262.55ms  262.55ms  cuCtxCreate
+                    0.03%  108.24ms        25  4.3294ms  3.2961ms  9.9361ms  cuLinkAddData
+                    0.02%  83.211ms         1  83.211ms  83.211ms  83.211ms  cuCtxDestroy
+                    0.02%  82.754ms        76  1.0889ms  398.62us  4.2599ms  cuMemAlloc
+                    0.01%  47.727ms       114  418.66us  14.589us  2.1730ms  cuMemcpyDtoH
+                    0.01%  45.863ms        76  603.46us  163.22us  4.0073ms  cuMemFree
+                    0.00%  11.534ms         1  11.534ms  11.534ms  11.534ms  cuModuleLoadData
+                    0.00%  5.6648ms        38  149.07us  20.172us  4.3024ms  cuLaunchKernel
+                    0.00%  2.8939ms         1  2.8939ms  2.8939ms  2.8939ms  cuLinkComplete
+                    0.00%  440.60us       342  1.2880us     215ns  16.842us  cuMemGetAddressRange
+                    0.00%  293.65us        19  15.455us     223ns  285.51us  cuDeviceGetAttribute
+                    0.00%  212.26us       383     554ns     123ns  15.134us  cuCtxGetDevice
+                    0.00%  74.710us         1  74.710us  74.710us  74.710us  cuLinkCreate
+                    0.00%  30.530us         1  30.530us  30.530us  30.530us  cuDeviceGetName
+                    0.00%  26.188us         2  13.094us  1.1280us  25.060us  cuFuncGetAttribute
+                    0.00%  17.123us         2  8.5610us  2.4780us  14.645us  cuDeviceGetPCIBusId
+                    0.00%  6.6330us         1  6.6330us  6.6330us  6.6330us  cuModuleGetFunction
+                    0.00%  4.2900us         3  1.4300us     236ns  3.8040us  cuDeviceGet
+                    0.00%  4.1990us         1  4.1990us  4.1990us  4.1990us  cuLinkDestroy
+                    0.00%  3.0940us         4     773ns     203ns  1.8520us  cuDeviceGetCount
+                    0.00%  3.0070us         1  3.0070us  3.0070us  3.0070us  cuInit
+                    0.00%  3.0050us         1  3.0050us  3.0050us  3.0050us  cuCtxGetCurrent
+                    0.00%  1.9810us         2     990ns     682ns  1.2990us  cuModuleGetGlobal
+                    0.00%     239ns         1     239ns     239ns     239ns  cuDriverGetVersion
+
+
+nvprof ./kmeans_omp inputs/2000k.txt outputs/2000k_omp 10
+==106544== NVPROF is profiling process 106544, command: ./kmeans_omp inputs/2000k.txt outputs/2000k_omp 10
+==106544== Profiling application: ./kmeans_omp inputs/2000k.txt outputs/2000k_omp 10
+==106544== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   99.95%  1.5e+03s        72  21.2943s  20.6525s  21.8218s  _Z25assign_points_to_clustersv$_omp_fn$0
+                    0.04%  632.36ms       360  1.7565ms  1.0870us  7.3439ms  [CUDA memcpy HtoD]
+                    0.01%  126.98ms       216  587.87us  1.5670us  5.2029ms  [CUDA memcpy DtoH]
+      API calls:   99.90%  1.5e+03s        72  21.2944s  20.6526s  21.8219s  cuCtxSynchronize
+                    0.05%  724.18ms       360  2.0116ms  4.4730us  8.3381ms  cuMemcpyHtoD
+                    0.02%  276.04ms         1  276.04ms  276.04ms  276.04ms  cuCtxCreate
+                    0.01%  173.34ms       216  802.52us  15.163us  7.8381ms  cuMemcpyDtoH
+                    0.01%  137.52ms       144  955.01us  569.97us  4.3942ms  cuMemAlloc
+                    0.01%  102.12ms        25  4.0850ms  3.3156ms  9.8185ms  cuLinkAddData
+                    0.01%  86.088ms       144  597.83us  152.98us  4.0810ms  cuMemFree
+                    0.01%  82.190ms         1  82.190ms  82.190ms  82.190ms  cuCtxDestroy
+                    0.00%  9.6979ms         1  9.6979ms  9.6979ms  9.6979ms  cuModuleLoadData
+                    0.00%  6.8487ms        72  95.120us  19.360us  4.3712ms  cuLaunchKernel
+                    0.00%  3.3443ms        19  176.02us     218ns  3.3361ms  cuDeviceGetAttribute
+                    0.00%  2.8843ms         1  2.8843ms  2.8843ms  2.8843ms  cuLinkComplete
+                    0.00%  968.50us       648  1.4940us     209ns  22.653us  cuMemGetAddressRange
+                    0.00%  430.46us       723     595ns     129ns  15.093us  cuCtxGetDevice
+                    0.00%  76.703us         1  76.703us  76.703us  76.703us  cuLinkCreate
+                    0.00%  32.101us         1  32.101us  32.101us  32.101us  cuDeviceGetName
+                    0.00%  15.851us         2  7.9250us  2.2620us  13.589us  cuDeviceGetPCIBusId
+                    0.00%  7.0810us         2  3.5400us  1.0600us  6.0210us  cuFuncGetAttribute
+                    0.00%  6.8850us         1  6.8850us  6.8850us  6.8850us  cuModuleGetFunction
+                    0.00%  4.4010us         3  1.4670us     252ns  3.8780us  cuDeviceGet
+                    0.00%  4.1620us         1  4.1620us  4.1620us  4.1620us  cuLinkDestroy
+                    0.00%  3.3080us         1  3.3080us  3.3080us  3.3080us  cuCtxGetCurrent
+                    0.00%  2.9930us         4     748ns     265ns  1.7860us  cuDeviceGetCount
+                    0.00%  2.7440us         1  2.7440us  2.7440us  2.7440us  cuInit
+                    0.00%  2.1260us         2  1.0630us     608ns  1.5180us  cuModuleGetGlobal
+                    0.00%     259ns         1     259ns     259ns     259ns  cuDriverGetVersion

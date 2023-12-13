@@ -1,0 +1,105 @@
+[am13018@cuda3 v2]$ nvprof ./cuda 6
+==86750== NVPROF is profiling process 86750, command: ./cuda 6
+Board length = 6, Number of unique solutions to place all the queens = 4
+==86750== Profiling application: ./cuda 6
+==86750== Profiling result:
+      Type Time(%)   Time   Calls    Avg    Min    Max Name
+ GPU activities:  82.09% 16.864us     3 5.6210us 5.2480us 6.0160us kernelIsValid(int, __int64, __int64, int*, int*)
+          10.12% 2.0800us     1 2.0800us 2.0800us 2.0800us [CUDA memcpy DtoH]
+          7.79% 1.6000us     1 1.6000us 1.6000us 1.6000us [CUDA memcpy HtoD]
+   API calls:  99.41% 373.93ms     1 373.93ms 373.93ms 373.93ms cudaMalloc
+          0.25% 922.44us     2 461.22us 455.28us 467.16us cuDeviceTotalMem
+          0.17% 625.20us    202 3.0950us   210ns 137.31us cuDeviceGetAttribute
+          0.07% 275.85us     1 275.85us 275.85us 275.85us cudaFree
+          0.04% 145.27us     3 48.424us 12.670us 116.02us cudaLaunchKernel
+          0.03% 125.76us     2 62.881us 41.442us 84.321us cudaMemcpy
+          0.02% 62.307us     2 31.153us 26.979us 35.328us cuDeviceGetName
+          0.01% 35.162us     3 11.720us 8.5480us 15.417us cudaDeviceSynchronize
+          0.01% 23.791us     2 11.895us 2.6130us 21.178us cuDeviceGetPCIBusId
+          0.00% 4.1110us     4 1.0270us   202ns 3.4860us cuDeviceGet
+          0.00% 2.0050us     3   668ns   250ns 1.4370us cuDeviceGetCount
+          0.00%   691ns     2   345ns   274ns   417ns cuDeviceGetUuid
+[am13018@cuda3 v2]$ nvprof ./cuda 7
+==86844== NVPROF is profiling process 86844, command: ./cuda 7
+Board length = 7, Number of unique solutions to place all the queens = 40
+==86844== Profiling application: ./cuda 7
+==86844== Profiling result:
+      Type Time(%)   Time   Calls    Avg    Min    Max Name
+ GPU activities:  98.75% 291.55us    51 5.7160us 4.9590us 6.3040us kernelIsValid(int, __int64, __int64, int*, int*)
+          0.70% 2.0800us     1 2.0800us 2.0800us 2.0800us [CUDA memcpy DtoH]
+          0.54% 1.6000us     1 1.6000us 1.6000us 1.6000us [CUDA memcpy HtoD]
+   API calls:  99.17% 380.45ms     1 380.45ms 380.45ms 380.45ms cudaMalloc
+          0.24% 916.39us     2 458.19us 454.72us 461.66us cuDeviceTotalMem
+          0.17% 669.34us    202 3.3130us   210ns 169.77us cuDeviceGetAttribute
+          0.17% 648.00us    51 12.705us 9.2610us 119.88us cudaLaunchKernel
+          0.12% 479.12us    51 9.3940us 3.2390us 14.129us cudaDeviceSynchronize
+          0.06% 247.81us     1 247.81us 247.81us 247.81us cudaFree
+          0.03% 118.93us     2 59.462us 40.084us 78.841us cudaMemcpy
+          0.02% 60.501us     2 30.250us 27.151us 33.350us cuDeviceGetName
+          0.01% 23.344us     2 11.672us 2.1670us 21.177us cuDeviceGetPCIBusId
+          0.00% 4.2940us     4 1.0730us   211ns 3.6310us cuDeviceGet
+          0.00% 2.7880us     3   929ns   273ns 1.8910us cuDeviceGetCount
+          0.00%   658ns     2   329ns   272ns   386ns cuDeviceGetUuid
+[am13018@cuda3 v2]$ nvprof ./cuda 8
+==86866== NVPROF is profiling process 86866, command: ./cuda 8
+Board length = 8, Number of unique solutions to place all the queens = 92
+==86866== Profiling application: ./cuda 8
+==86866== Profiling result:
+      Type Time(%)   Time   Calls    Avg    Min    Max Name
+ GPU activities:  99.94% 6.0586ms   1024 5.9160us 5.5360us 8.6080us kernelIsValid(int, __int64, __int64, int*, int*)
+          0.03% 1.8560us     1 1.8560us 1.8560us 1.8560us [CUDA memcpy DtoH]
+          0.03% 1.6000us     1 1.6000us 1.6000us 1.6000us [CUDA memcpy HtoD]
+   API calls:  95.89% 401.87ms     1 401.87ms 401.87ms 401.87ms cudaMalloc
+          2.29% 9.6114ms   1024 9.3860us 4.1400us 15.230us cudaDeviceSynchronize
+          1.36% 5.6894ms   1024 5.5560us 4.8380us 63.827us cudaLaunchKernel
+          0.22% 938.36us     2 469.18us 464.01us 474.36us cuDeviceTotalMem
+          0.15% 627.00us    202 3.1030us   212ns 138.23us cuDeviceGetAttribute
+          0.04% 178.71us     1 178.71us 178.71us 178.71us cudaFree
+          0.02% 77.769us     2 38.884us 30.434us 47.335us cudaMemcpy
+          0.01% 60.202us     2 30.101us 26.924us 33.278us cuDeviceGetName
+          0.01% 24.507us     2 12.253us 2.6960us 21.811us cuDeviceGetPCIBusId
+          0.00% 4.3600us     4 1.0900us   208ns 3.6880us cuDeviceGet
+          0.00% 1.8190us     3   606ns   230ns 1.1650us cuDeviceGetCount
+          0.00%   642ns     2   321ns   235ns   407ns cuDeviceGetUuid
+[am13018@cuda3 v2]$ nvprof ./cuda 9
+==86919== NVPROF is profiling process 86919, command: ./cuda 9
+Board length = 9, Number of unique solutions to place all the queens = 352
+==86919== Profiling application: ./cuda 9
+==86919== Profiling result:
+      Type Time(%)   Time   Calls    Avg    Min    Max Name
+ GPU activities: 100.00% 141.18ms   23647 5.9700us 4.9280us 13.855us kernelIsValid(int, __int64, __int64, int*, int*)
+          0.00% 1.8560us     1 1.8560us 1.8560us 1.8560us [CUDA memcpy DtoH]
+          0.00% 1.6010us     1 1.6010us 1.6010us 1.6010us [CUDA memcpy HtoD]
+   API calls:  53.85% 377.88ms     1 377.88ms 377.88ms 377.88ms cudaMalloc
+          31.26% 219.37ms   23647 9.2760us 1.2610us 647.93us cudaDeviceSynchronize
+          14.60% 102.49ms   23647 4.3340us 3.7400us 704.13us cudaLaunchKernel
+          0.13% 923.56us     2 461.78us 456.94us 466.62us cuDeviceTotalMem
+          0.10% 715.60us    202 3.5420us   211ns 205.96us cuDeviceGetAttribute
+          0.03% 183.47us     1 183.47us 183.47us 183.47us cudaFree
+          0.01% 81.053us     2 40.526us 35.427us 45.626us cudaMemcpy
+          0.01% 66.952us     2 33.476us 28.230us 38.722us cuDeviceGetName
+          0.01% 36.646us     2 18.323us 3.3580us 33.288us cuDeviceGetPCIBusId
+          0.00% 4.3010us     4 1.0750us   218ns 3.6380us cuDeviceGet
+          0.00% 2.8320us     3   944ns   236ns 1.8200us cuDeviceGetCount
+          0.00%   747ns     2   373ns   335ns   412ns cuDeviceGetUuid
+[am13018@cuda3 v2]$ nvprof ./cuda 10
+==86947== NVPROF is profiling process 86947, command: ./cuda 10
+Board length = 10, Number of unique solutions to place all the queens = 724
+==86947== Profiling application: ./cuda 10
+==86947== Profiling result:
+      Type Time(%)   Time   Calls    Avg    Min    Max Name
+ GPU activities: 100.00% 3.84342s  610352 6.2970us 5.0890us 14.752us kernelIsValid(int, __int64, __int64, int*, int*)
+          0.00% 2.0800us     1 2.0800us 2.0800us 2.0800us [CUDA memcpy DtoH]
+          0.00% 1.6000us     1 1.6000us 1.6000us 1.6000us [CUDA memcpy HtoD]
+   API calls:  63.84% 5.78330s  610352 9.4750us 1.0820us 1.0543ms cudaDeviceSynchronize
+          32.70% 2.96229s  610352 4.8530us 3.9410us 2.2424ms cudaLaunchKernel
+          3.44% 311.45ms     1 311.45ms 311.45ms 311.45ms cudaMalloc
+          0.01% 931.02us     2 465.51us 460.79us 470.23us cuDeviceTotalMem
+          0.01% 626.69us    202 3.1020us   214ns 136.62us cuDeviceGetAttribute
+          0.00% 388.42us     1 388.42us 388.42us 388.42us cudaFree
+          0.00% 115.88us     2 57.942us 41.809us 74.075us cudaMemcpy
+          0.00% 64.870us     2 32.435us 28.244us 36.626us cuDeviceGetName
+          0.00% 33.135us     2 16.567us 2.9070us 30.228us cuDeviceGetPCIBusId
+          0.00% 4.3730us     4 1.0930us   201ns 3.7190us cuDeviceGet
+          0.00% 1.5990us     3   533ns   241ns   842ns cuDeviceGetCount
+          0.00%   691ns     2   345ns   294ns   397ns cuDeviceGetUuid

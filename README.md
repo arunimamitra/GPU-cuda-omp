@@ -12,6 +12,10 @@ We use NVIDIA's command-line profiler, nvprof, to profile the parallel codes and
 3. Kernal execution time
 4. Memory transfer time (between device and host)
 
+## Contributors 
+1. Arunima Mitra
+2. Anoushka Gupta
+
 
 
 
